@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Night Dii - 3D Glow</title>
+    <style>
+        :root {
+            --wire-color: #00f2ff; /* Electric Cyan */
+            --glow-color: rgba(0, 242, 255, 0.6);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #050505; /* Deep black for contrast */
+            overflow: hidden;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            perspective: 1000px; /* Gives the 3D depth */
+        }
+
+        .neon-text {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: transparent;
+            /* Creates the "Wire" look using stroke */
+            -webkit-text-stroke: 1px var(--wire-color);
+            letter-spacing: 5px;
+            position: relative;
+            display: inline-block;
+            transform: rotateX(15deg) rotateY(-10deg);
+            
+            /* Smooth Animation */
+            animation: pulse 2s infinite alternate, flicker 4s infinite;
+            filter: drop-shadow(0 0 10px var(--glow-color));
+        }
+
+        /* The "Breathing" Glow Effect */
+        @keyframes pulse {
+            from {
+                text-shadow: 0 0 5px var(--glow-color),
+                             0 0 10px var(--glow-color);
+                transform: rotateX(15deg) rotateY(-10deg) scale(1);
+            }
+            to {
+                text-shadow: 0 0 20px var(--glow-color),
+                             0 0 40px var(--glow-color),
+                             0 0 60px var(--glow-color);
+                transform: rotateX(15deg) rotateY(-10deg) scale(1.05);
+            }
+        }
+
+        /* The Electric "Wire" Flicker Effect */
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0.3;
+                -webkit-text-stroke: 1px #555; /* Wire looks "off" */
+            }
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 600px) {
+            .neon-text {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="neon-text">GOOD NIGHT<br>DII</h1>
+    </div>
+
+</body>
+</html>
